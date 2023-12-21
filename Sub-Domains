@@ -1,0 +1,29 @@
+1. OSINT Tools -
+This is one of the most popular toolkit through which we can gather information.
+
+2. Sublist3r - 
+Sublist3r is a popular Python tool used to enumerate subdomains of a domain. It uses search engines like Google, Yahoo, and Bing to discover valid subdomains existing on an application.
+
+3. theHarvester - 
+theHarvester is one of the most popular tool to identify subdomains, emails, IP Addresses, Social network profiles, etc. It is already in Kali Linux.
+
+4. Knockpy -
+Knockpy is a simple script that will help us to discover subdomains information. This is the default in Kali Linux.
+
+5. Dnsdumpster - 
+This is a website through which you can gather information related to DNS records, subdomains, etc.
+
+6. Aquatone  - 
+Aquatone includes a set of OSINT tools for performing information gathering on a domain. We can perform subdomains discovery, port scanning, and integrates APIs to get more information about any target domain.
+
+7. Amass - 
+Amass is an open-source tool developed by the Open Web Application Security Project for information gathering. Security professionals and researchers use Amass for domain and subdomain enumeration, network mapping, DNS enumeration, etc.
+
+8. DNSRecon- 
+DNSRecon is a DNS enumeration tool that can perform various queries such as brute-force subdomains and reverse lookups. It is a very popular and versatile tool used by penetration testers in the information-gathering stage
+
+9. Fierce - 
+Fierce is a DNS reconnaissance tool, and you can use it to enumerate subdomains.
+
+10. Assetfinder -
+assetfinder is a Golang-based tool used for subdomain enumeration on Linux. It discovers subdomains by searching various public sources such as Common Crawl, DNSdumpster, and VirusTotal.
