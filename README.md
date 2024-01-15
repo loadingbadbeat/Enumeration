@@ -32,118 +32,121 @@ assetfinder is a Golang-based tool used for subdomain enumeration on Linux. It d
 
 Thanks to - https://atryharder.gitbook.io/try-harder-journey/recon-enumeration
 
-Recon/Enumeration
-nmap,nikto.etc notes/cheatsheet
-Nmap 
-Port Scan Command Lines:
-kali@kali#sudo nmap -sV -v -p- --min-rate=10000 10.10.10.5
-kali@kali#sudo nmap -sC -sV 10.10.10.5 -Pn
-kali@kali#sudo nmap -sC -sS -sV -vv -A -oN nmapscan 10.10.10.5
-kali@kali#sudo nmap -T4 -p- -A 10.10.10.5
-Notes:
--p-: Scan ALL ports for specified host
--A :This combines OS detection, service version detection, script scanning and traceroute.
--sV :Version detection scan of open ports (services
--T4: Aggressive (fast and fairly accurate)
--sS: This sends only a TCP SYN packet and waits for a TCP ACK. If it receives an ACK on the specific probed port, it means the port exist on the machine. This is fast and pretty accurate.
--sT: This creates a full TCP connection with the host (full TCP handshake). This is considered more accurate than SYN scan but slower and noisier.
--sP: This is for fast checking which hosts reply to ICMP ping packets (useful if you are on the same subnet as the scanned range and want a fast result about how many live hosts are connected).
--Pn: Don’t ping the hosts, assume they are up.
--oN: Normal text format.
-Vulnerabilities Scan Example Command Lines:
-kali@kali# sudo ls /usr/share/nmap/scripts/ | grep smb | grep vuln
-smb2-vuln-uptime.nse
-smb-vuln-conficker.nse
-smb-vuln-cve2009-3103.nse
-smb-vuln-cve-2017-7494.nse
-smb-vuln-ms06-025.nse
-smb-vuln-ms07-029.nse
-smb-vuln-ms08-067.nse
-smb-vuln-ms10-054.nse
-smb-vuln-ms10-061.nse
-smb-vuln-ms17-010.nse
-smb-vuln-regsvc-dos.nse
-kali@kali# sudo nmap --script smb-vuln* -p 445 -oA nmap/smb_vulns 10.10.10.5
-Details reference link:​
-Nikto
-Scan Command Line:
-kali@kali#sudo nikto -host 10.10.10.5
-nikto -h "http://10.10.10.5" | tee nikto.log   
-Details reference link:​
-ffuf - Fuzz Faster U Fool
-Installation:
-kali@kali#sudo apt update
-kali@kali#sudo apt install ffuf -y
-Usage Example:
-ffuf -ic -w /usr/share/wordlists/dirb/common.txt -e '' -u "http://10.10.10.5/FUZZ" | tee "recon/fuff.txt"
-Details reference link:​
-dirsearch - Web path discovery
-Current Release: v0.4.2 (2021.9.12)
-An advanced command-line tool designed to brute force directories and files in webservers, AKA web path scanner.
-Usage example:
-dirsearch.py -u http://10.10.10.5 or python3 dirsearch.py -u http://10.10.10.5
-Github link:​
-WPSCAN
+Recon/Enumeration<br>
+nmap,nikto.etc notes/cheatsheet<br>
+Nmap <br>
+Port Scan Command Lines:<br>
+kali@kali#sudo nmap -sV -v -p- --min-rate=10000 10.10.10.5<br>
+kali@kali#sudo nmap -sC -sV 10.10.10.5 -Pn<br>
+kali@kali#sudo nmap -sC -sS -sV -vv -A -oN nmapscan 10.10.10.5<br>
+kali@kali#sudo nmap -T4 -p- -A 10.10.10.5<br>
+
+Notes:<br>
+-p-: Scan ALL ports for specified host<br>
+-A :This combines OS detection, service version detection, script scanning and traceroute.<br>
+-sV :Version detection scan of open ports (services<br>
+-T4: Aggressive (fast and fairly accurate)<br>
+-sS: This sends only a TCP SYN packet and waits for a TCP ACK. If it receives an ACK on the specific probed port, it means the port exist on the machine. This is fast and pretty accurate.<br>
+-sT: This creates a full TCP connection with the host (full TCP handshake). This is considered more accurate than SYN scan but slower and noisier.<br>
+-sP: This is for fast checking which hosts reply to ICMP ping packets (useful if you are on the same subnet as the scanned range and want a fast result about how many live hosts are connected).<br>
+-Pn: Don’t ping the hosts, assume they are up.<br>
+-oN: Normal text format.<br>
+
+Vulnerabilities Scan Example Command Lines:<br>
+kali@kali# sudo ls /usr/share/nmap/scripts/ | grep smb | grep vuln<br>
+smb2-vuln-uptime.nse<br>
+smb-vuln-conficker.nse<br>
+smb-vuln-cve2009-3103.nse<br>
+smb-vuln-cve-2017-7494.nse<br>
+smb-vuln-ms06-025.nse<br>
+smb-vuln-ms07-029.nse<br>
+smb-vuln-ms08-067.nse<br>
+smb-vuln-ms10-054.nse<br>
+smb-vuln-ms10-061.nse<br>
+smb-vuln-ms17-010.nse<br>
+smb-vuln-regsvc-dos.nse<br>
+kali@kali# sudo nmap --script smb-vuln* -p 445 -oA nmap/smb_vulns 10.10.10.5<br>
+Details reference link:​<br>
+Nikto<br>
+Scan Command Line:<br>
+kali@kali#sudo nikto -host 10.10.10.5<br>
+nikto -h "http://10.10.10.5" | tee nikto.log   <br>
+Details reference link:​<br>
+ffuf - Fuzz Faster U Fool<br>
+
+Installation:<br>
+kali@kali#sudo apt update<br>
+kali@kali#sudo apt install ffuf -y<br>
+Usage Example:<br>
+ffuf -ic -w /usr/share/wordlists/dirb/common.txt -e '' -u "http://10.10.10.5/FUZZ" | tee "recon/fuff.txt"<br>
+Details reference link:​<br>
+dirsearch - Web path discovery<br>
+Current Release: v0.4.2 (2021.9.12)<br>
+An advanced command-line tool designed to brute force directories and files in webservers, AKA web path scanner.<br>
+Usage example:<br>
+dirsearch.py -u http://10.10.10.5 or python3 dirsearch.py -u http://10.10.10.5<br>
+Github link:​<br>
+WPSCAN<br>
 ​​
-wpscan --url 10.10.10.5 --enumerate vp,u,vt,tt
-How to install: sudo apt install wpscan
-Gobust
+wpscan --url 10.10.10.5 --enumerate vp,u,vt,tt<br>
+How to install: sudo apt install wpscan<br>
+Gobust<br>
 ​
-Installation:
-kali@kali#sudo apt update
-kali@kali#sudo apt install gobuster -y
-Usage Example:
-gobuster dir -u http://10.10.10.5/ -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt -x php
-gobuster dir -u http://10.10.10.5 -w /usr/share/wordlists/dirb/common.txt 
-dns Mode Help:
-Usage:
-  gobuster dns [flags]
+Installation:<br>
+kali@kali#sudo apt update<br>
+kali@kali#sudo apt install gobuster -y<br>
+Usage Example:<br>
+gobuster dir -u http://10.10.10.5/ -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt -x php<br>
+gobuster dir -u http://10.10.10.5 -w /usr/share/wordlists/dirb/common.txt <br>
+dns Mode Help:<br>
+Usage:<br>
+  gobuster dns [flags]<br>
 ​
-Flags:
-  -d, --domain string      The target domain
-  -h, --help               help for dns
-  -r, --resolver string    Use custom DNS server (format server.com or server.com:port)
-  -c, --show-cname         Show CNAME records (cannot be used with '-i' option)
-  -i, --show-ips           Show IP addresses
-      --timeout duration   DNS resolver timeout (default 1s)
-      --wildcard           Force continued operation when wildcard found
+Flags:<br>
+  -d, --domain string      The target domain<br>
+  -h, --help               help for dns<br>
+  -r, --resolver string    Use custom DNS server (format server.com or server.com:port)<br>
+  -c, --show-cname         Show CNAME records (cannot be used with '-i' option)<br>
+  -i, --show-ips           Show IP addresses<br>
+      --timeout duration   DNS resolver timeout (default 1s)<br>
+      --wildcard           Force continued operation when wildcard found<br>
 ​
-Global Flags:
-  -z, --no-progress       Don't display progress
-  -o, --output string     Output file to write results to (defaults to stdout)
-  -q, --quiet             Don't print the banner and other noise
-  -t, --threads int       Number of concurrent threads (default 10)
-      --delay duration    Time each thread waits between requests (e.g. 1500ms)
-  -v, --verbose           Verbose output (errors)
-  -w, --wordlist string   Path to the wordlist
+Global Flags:<br>
+  -z, --no-progress       Don't display progress<br>
+  -o, --output string     Output file to write results to (defaults to stdout)<br>
+  -q, --quiet             Don't print the banner and other noise<br>
+  -t, --threads int       Number of concurrent threads (default 10)<br>
+      --delay duration    Time each thread waits between requests (e.g. 1500ms)<br>
+  -v, --verbose           Verbose output (errors)<br>
+  -w, --wordlist string   Path to the wordlist<br>
 ​
-dns Model Example Command Line:
-gobuster dns -d mysite.com -t 50 -w common-names.txt
-dir Mode Options
-Usage:
-  gobuster dir [flags]
+dns Model Example Command Line:<br>
+gobuster dns -d mysite.com -t 50 -w common-names.txt<br>
+dir Mode Options<br>
+Usage:<br>
+  gobuster dir [flags]<br>
 ​
-Flags:
-  -f, --add-slash                     Append / to each request
-  -c, --cookies string                Cookies to use for the requests
-  -e, --expanded                      Expanded mode, print full URLs
-  -x, --extensions string             File extension(s) to search for
-  -r, --follow-redirect               Follow redirects
-  -H, --headers stringArray           Specify HTTP headers, -H 'Header1: val1' -H 'Header2: val2'
-  -h, --help                          help for dir
-  -l, --include-length                Include the length of the body in the output
-  -k, --no-tls-validation             Skip TLS certificate verification
-  -n, --no-status                     Don't print status codes
-  -P, --password string               Password for Basic Auth
-  -p, --proxy string                  Proxy to use for requests [http(s)://host:port]
-  -s, --status-codes string           Positive status codes (will be overwritten with status-codes-blacklist if set) (default "200,204,301,302,307,401,403")
-  -b, --status-codes-blacklist string Negative status codes (will override status-codes if set)
-      --timeout duration              HTTP Timeout (default 10s)
-  -u, --url string                    The target URL
-  -a, --useragent string              Set the User-Agent string (default "gobuster/3.1.0")
-  -U, --username string               Username for Basic Auth
-  -d, --discover-backup               Upon finding a file search for backup files
-      --wildcard                      Force continued operation when wildcard found
+Flags:<br>
+  -f, --add-slash                     Append / to each request<br>
+  -c, --cookies string                Cookies to use for the requests<br>
+  -e, --expanded                      Expanded mode, print full URLs<br>
+  -x, --extensions string             File extension(s) to search for<br>
+  -r, --follow-redirect               Follow redirects<br>
+  -H, --headers stringArray           Specify HTTP headers, -H 'Header1: val1' -H 'Header2: val2'<br>
+  -h, --help                          help for dir<br>
+  -l, --include-length                Include the length of the body in the output<br>
+  -k, --no-tls-validation             Skip TLS certificate verification<br>
+  -n, --no-status                     Don't print status codes<br>
+  -P, --password string               Password for Basic Auth<br>
+  -p, --proxy string                  Proxy to use for requests [http(s)://host:port]<br>
+  -s, --status-codes string           Positive status codes (will be overwritten with status-codes-blacklist if set) (default "200,204,301,302,307,401,403")<br>
+  -b, --status-codes-blacklist string Negative status codes (will override status-codes if set)<br>
+      --timeout duration              HTTP Timeout (default 10s)<br>
+  -u, --url string                    The target URL<br>
+  -a, --useragent string              Set the User-Agent string (default "gobuster/3.1.0")<br>
+  -U, --username string               Username for Basic Auth<br>
+  -d, --discover-backup               Upon finding a file search for backup files<br>
+      --wildcard                      Force continued operation when wildcard found<br>
 ​
 Global Flags:
   -z, --no-progress       Don't display progress
