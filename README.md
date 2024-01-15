@@ -29,6 +29,7 @@ Fierce is a DNS reconnaissance tool, and you can use it to enumerate subdomains.
 assetfinder is a Golang-based tool used for subdomain enumeration on Linux. It discovers subdomains by searching various public sources such as Common Crawl, DNSdumpster, and VirusTotal.
 
 
+<b>-----Examples------</b>
 
 Thanks to - https://atryharder.gitbook.io/try-harder-journey/recon-enumeration
 
